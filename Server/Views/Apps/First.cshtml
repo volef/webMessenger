@@ -1,0 +1,31 @@
+﻿@model Server.Models.Message;
+@{
+    ViewData["Title"] = "Отправка сообщений";
+}
+
+<div class="text-center">
+    <form id="sendform" novalidate="novalidate" asp-antiforgery="false" method="post" asp-controller="Api" asp-action="Send">
+        <div class="form-group row">
+            <label class="control-label col-sm-auto" asp-for="Text"></label>
+            <div class="col-sm-12">
+                <textarea form="sendform" class="form-control" rows="3" asp-for="Text"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row center-block">
+            <label class="control-label col-sm-auto center-block" asp-for="Id"></label>
+            <div class="col-sm-auto center-block">
+                <input class="form-control" asp-for="Id"/>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Отправить</button>
+
+        <label id="formstatus"></label>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/send.js"></script>
+}

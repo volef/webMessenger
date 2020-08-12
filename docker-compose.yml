@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+    server:
+        container_name: server
+        image: ${DOCKER_REGISTRY-}server
+        build:
+            context: .
+            dockerfile: Server/Dockerfile
+        links: 
+            - "mssql:sql"
+    mssql:
+        container_name: mssql
+        image: mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04
+        restart: always
+        environment:
+            - SA_PASSWORD=<mYStrong@Passw0rd>
+            - ACCEPT_EULA=Y
+        ports:
+            - 1433:1433
